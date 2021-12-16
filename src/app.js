@@ -11,7 +11,7 @@
 
 
 // get random floot number from 0 to 99 and ceil it up
-let randomNumber = Math.ceil(Math.random() * 3);
+let randomNumber = Math.ceil(Math.random() * 100);
 
 let countDown = 8;
 
