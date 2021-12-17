@@ -28,8 +28,7 @@ while (countDown) {
     }
 
     // change type of guessedNumber from string to number
-    guessedNumber = Number(guessedNumber);
-    if (guessedNumber === randomNumber) {
+    if (guessedNumber == randomNumber) {
         flag = 'win';
         alert('Right guess!');
         break;
