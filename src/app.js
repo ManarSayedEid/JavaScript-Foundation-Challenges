@@ -11,9 +11,9 @@
 
 
 // get random floot number from 0 to 99 and ceil it up
-let randomNumber = Math.ceil(Math.random() * 100);
+const randomNumber = Math.ceil(Math.random() * 100);
 
-let countDown = 8;
+const countDown = 8;
 
 // flag to enter diffrent message if the user lose/exit the game
 let flag = 'lose';
