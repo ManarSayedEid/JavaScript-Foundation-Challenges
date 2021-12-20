@@ -9,37 +9,40 @@
 
 
 
-
-// get random floot number from 0 to 99 and ceil it up
-const randomNumber = Math.ceil(Math.random() * 100);
-
+const randomNumber = Math.ceil(Math.random() * 100); 
 const countDown = 8;
+let win = false;
+let lose = true;
+let exit = false;
 
-// flag to enter diffrent message if the user lose/exit the game
-let flag = 'lose';
 
 while (countDown) {
+
     let guessedNumber = prompt('Guess a number from 1 to 100. Press cancel to exit');
     
     //check first if user want to exit
     if (guessedNumber === null) {
-        flag = 'exit';
+        exit = true;
+        lose = false;
         break;
     }
 
-    // change type of guessedNumber from string to number
     if (guessedNumber == randomNumber) {
-        flag = 'win';
+        win = true;
+        lose = false;
         alert('Right guess!');
         break;
     }
 
     countDown--;
+
 }
 
-if (flag === 'lose') {
+if (lose) {
     alert('Sorry! you lose!')
-} else if (flag === 'exit') {
+}
+
+if (exit) {
     alert('Bye!')
 }
 
