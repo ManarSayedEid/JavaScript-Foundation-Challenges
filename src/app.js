@@ -10,22 +10,22 @@
 
 function filterByYear(year) {
 
-    let movieFilteredByYear = movies.filter((movie) => movie.year == year);
+    const movieFilteredByYear = movies.filter((movie) => movie.year == year)
+        .map((movie) => console.log(movie.title));
 
-    for (let i = 0; i < movieFilteredByYear.length; i++) {
-        console.log(movieFilteredByYear[i].title);
-    } 
 }
 
 function filterByDirector(director) {
 
-    let movieFilteredByDirector = movies.filter((movie) => movie.director === director);
+    const movieFilteredByDirector = movies.filter((movie) => movie.director === director);
     console.log(movieFilteredByDirector);
+
 }
 
 function filterByGenre(genre) {
     
-    let movieFilteredByGenre = movies.filter((movie) => movie.genres.includes(genre));
+    const movieFilteredByGenre = movies.filter((movie) => movie.genres.includes(genre));
     console.log(movieFilteredByGenre);
+
 }
 
