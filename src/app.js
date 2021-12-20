@@ -1,65 +1,84 @@
 // Create a TaskList class with the following functionalitty:
+class Todo {
 
-let taskList = [];
+    constructor() {
 
-// • Should add tasks with name and priority.
-// If the priority is missing the value 0 will be used instead.
-// Also, the name of the tasks must be unique.
-function addTask(name, priority = 0) {
+        this.taskList = [];
+    }
 
-    let isExist = false;
-    for (let i = 0; i < taskList.length; i++) {
-        if (name === taskList[i].name) {
-            isExist = true;
-            break;
+    // • Should add tasks with name and priority.
+    // If the priority is missing the value 0 will be used instead.
+    // Also, the name of the tasks must be unique.
+    addTask(name, priority = 0) {
+
+        let taskList = this.taskList;
+        let isExist = false;
+        for (let i = 0; i < taskList.length; i++) {
+            if (name === taskList[i].name) {
+                isExist = true;
+                console.log('This task is alraedy exists')
+                break;
+            }
+        }
+        if (!isExist) {
+            taskList.push({ name, priority });
         }
     }
-    if (!isExist) {
-        taskList.push({ neme, priority });
-    }
-}
 
-// • Should remove tasks with the specified name. A status message should be printed in the console.
-function removeTask(name) {
+    // • Should remove tasks with the specified name. A status message should be printed in the console.
+    removeTaskByName(name) {
 
-    let isDeleted = false;
-    for (let i = 0; i < taskList.length; i++) {
-        if (name === taskList[i].name) {
-            taskList.splice(i, 1);
-            isDeleted = true;
-            console.log('Task deleted successfully!');
+        let taskList = this.taskList;
+        let isDeleted = false;
+        for (let i = 0; i < taskList.length; i++) {
+            if (name === taskList[i].name) {
+                taskList.splice(i, 1);
+                isDeleted = true;
+                console.log('Task deleted successfully!');
+            }
+        }
+        if (!isDeleted) {
+            console.log('This task does not exist!');
         }
     }
-    if (!isDeleted) {
-        console.log('This task does not exist!');
+
+    // • Should print all the tasks.
+    printAllTask() {
+
+        this.taskList.forEach((task) => console.log('Task name:', task.name, 'Priority:', task.priority));
     }
-}
 
-// • Should sort the tasks ascending by name
-function sortByName() {
+    // • Should print the tasks filtered by a call back function received as parame-ter.
+    printTask(value) {
 
-    // revise how sort finction works
-    // taskList.sort();
-}
-
-// • Should sort the tasks ascending by priority
-function sortByPriority() {
-
-    taskList.sort((a, b) => a.priority - b.priority);
-    console.log(taskList);
-}
-
-// • Should print all the tasks.
-function printAllTask() {
-
-    taskList.forEach((task) => console.log(task.name, task.priority));
-}
-
-// • Should print the tasks filtered by a call back function received as parame-ter.
-function printTask(name) {
-    taskList.filter((task) => {
-        if (task.name === name) {
-            console.log(task);
+        if (typeof value === 'string') {
+            this.printfilteredTask(task => task.name === value);
         }
-    })
+
+        if (typeof value === 'number') {
+            this.printfilteredTask(task => task.priority === value);
+        }
+    }
+
+    printfilteredTask(callback) {
+
+        console.log(this.taskList.filter(callback));
+    }
+
+
+    // • Should sort the tasks ascending by name
+    sortByName() {
+
+        this.taskList.sort((currentTask, nextTask) => {
+            if (currentTask.name < nextTask.name) return -1;
+            if (currentTask.name > nextTask.name) return 1;
+            return 0;
+        });
+    }
+
+    // • Should sort the tasks ascending by priority
+    sortByPriority() {
+
+        this.taskList.sort((currentTask, nextTask) => currentTask.priority - nextTask.priority);
+    }
 }
