@@ -9,24 +9,16 @@ class Todo {
     // If the priority is missing the value 0 will be used instead.
     // Also, the name of the tasks must be unique.
     addTask(name, priority = 0) {
-        for (let task of this.taskList) {
-            if (name === task.name) {
-                console.log('This task is alraedy exists')
-                return;
-            }
+        if ((this.taskList.some((task) => task.name === name))) {
+            console.log('This task is alraedy exists')
+        } else {
+            this.taskList.push({ name, priority });
         }
-        this.taskList.push({ name, priority });
     }
 
     // • Should remove tasks with the specified name. A status message should be printed in the console.
     removeTaskByName(name) {
-        this.taskList.forEach((task, index) => {
-            if (name === task.name) {
-                this.taskList.splice(index, 1);
-                console.log('Task deleted successfully!');
-                return;
-            }
-        })
+        this.taskList = this.taskList.filter((task) => task.name !== name);
     }
 
     // • Should print all the tasks.
